@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-  <title>EKU :: 一库仓储</title>
+  <title>仓储</title>
   <meta name="keywords" content="BugTRace"/>
   <meta name="description" content="BugTRace Home Page"/>
   <link href="static/default.css" rel="stylesheet" type="text/css" media="screen" />
@@ -17,10 +17,10 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="http://eku.b24.cn">一库仓储</a>
+          <a class="brand" href="http://eku.b24.cn">仓储</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <?foreach($menu as $k=>$v){?>
+              <? foreach($menu as $k=>$v){?>
                 <li class="<?=$k==(seg(2)?seg(2):'index')?'active ':''?>bt" ><a href="?/store/<?=$k?>/" ><?=$v?></a></li>
               <?}?>
               <li><a href="?/logout/" > <?if(isset($u['id'])):?><?=$u['name']?$u['name']:$u['email']?> / 退出登录</a><?endif;?></li>
@@ -37,8 +37,7 @@
           <?=$al_content?>
           </div>
           <div class="content" > 
-    <div class="cpr" > <a href="http://eku.b24.cn/page/feedback/" target=_blank >意见反馈</a></div>
-  </div> 
+          </div> 
         </div>
       </div>
     </div> <!-- /container -->

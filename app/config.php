@@ -9,14 +9,4 @@ $route_config = array(
   '/logout/'=>'/user/logout/',
 );
 
-// if(defined( 'SAE_MYSQL_HOST_M')){
-//   define('BASE','/');
-//   $db_config = array(
-//     'host'=>'localhsot', //SAE_MYSQL_HOST_M.':'.SAE_MYSQL_PORT,
-//     'user'=>'root', //SAE_MYSQL_USER,
-//     'password'=>'leokuan', //SAE_MYSQL_PASS,
-//     'default_db'=>'eku', //SAE_MYSQL_DB
-//   );  
-// }
-
 if(file_exists(APP.'config_user.php')) require(APP.'config_user.php');

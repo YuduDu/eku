@@ -85,7 +85,7 @@ foreach($seg as $cur_dir)
 //echo  '默认请求 class home->index()';
 $dir = $dir ? $dir:'/';
 array_unshift($seg,NULL);
-$class  = isset($seg[1])?$seg[1]:'home';
+$class  = isset($seg[1])?$seg[1]:'dashboard';
 $method = isset($seg[2])?$seg[2]:'index'; 
 if(!is_file(APP.'c'.$dir.$class.'.php'))show_404( 'file:'.APP.'c'.$dir.$class.'.php');
 require(APP.'c'.$dir.$class.'.php');
@@ -161,11 +161,12 @@ function write_log($level = 0 ,$content = 'none')
 }
 
 //echo ' 显示404错误';
-function show_404() //显示 404 错误
+function show_404($where) //显示 404 错误
 {
   header("HTTP/1.1 404 Not Found");
   // 调用 模板 v/404.php 
   //var_dump(seg(1));exit();
+  echo $where;
   view('v/404');
   exit(1);
 }

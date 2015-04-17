@@ -1,6 +1,7 @@
 <?php
 load('lib/utility',false);
 class base extends c{
+  public $menu;
   function __construct()
   {
     global $db_config;
@@ -14,7 +15,20 @@ class base extends c{
     if(!load('m/app')->is_install()){
       $this->sae_install();
       exit;
-    } 
+    }
+
+    $this->menu = array(
+          'index'=>'Dashboard',
+          'stock'=>'库存单管理',
+          'history'=>'物品类管理',
+          'calculate'=>'供应商管理',
+          'help'=>'客户管理',
+          'account'=>'仓库管理',
+          'system_info'=>'系统信息',
+          'staff'=>'员工管理',
+          'system'=>'系统管理',
+          'logout'=>'注销'
+   );
     
   }
   
@@ -40,7 +54,7 @@ class base extends c{
     $param['u'] = $this->u;
     $param['menu']  = $this->menu;
     header("Content-type: text/html; charset=utf-8");
-    view('v/bug/template',$param);
+    view('v/layout/template',$param);
   }
   
   

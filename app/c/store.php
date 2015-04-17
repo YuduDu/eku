@@ -9,14 +9,6 @@ class store extends base{
     $this->check();
     $this->loadapp();
     $this->m = load('m/eku');
-       $this->menu = array(
-          'index'=>'Dashboard',
-          'stock'=>'库存项更新',
-          'history'=>'库存',
-          'calculate'=>'统计',
-          'help'=>'帮助',
-          'account'=>'账户'
-   );
    
     $this->app = load('m/app')->get($app_id);
     if( $this->app['admin'] == $this->u['id'] ) $this->menu['sys'] ='设置';
