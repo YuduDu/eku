@@ -6,5 +6,5 @@ $db_config = array(
   'user'      =>'root',  
   'password'  =>'leokuan', 
   'db_type'   =>'mysql',
-  'default_db'=>'eku'
+  'default_db'=>'final_project'
 );

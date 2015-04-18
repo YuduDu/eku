@@ -18,17 +18,36 @@ class base extends c{
     }
 
     $this->menu = array(
-          'index'=>'Dashboard',
+          'dashboard'=>'Dashboard',
           'stock'=>'库存单管理',
-          'history'=>'物品类管理',
-          'calculate'=>'供应商管理',
-          'help'=>'客户管理',
-          'account'=>'仓库管理',
-          'system_info'=>'系统信息',
+          'category'=>'物品类管理',
+          'supplier'=>'供应商管理',
+          'customer'=>'客户管理',
+          'warehouse'=>'仓库管理',
+          'system'=>'系统信息',
           'staff'=>'员工管理',
-          'system'=>'系统管理',
+          'admin'=>'系统管理',
           'logout'=>'注销'
    );
+
+  $this->tabCell = array(
+          'dashboard'=>array(
+              'notice'=>'库存通知','add'=>'添加库存','out'=>'出库','inner_trasition'=>'内部流转'),
+          'stock'=>array(
+              'dashboard'=>'dashboard','addList'=>'入库数据','outList'=>'出库数据','inner_trasition'=>'内部流转'),
+          'category'=>array(
+              'list'=>'物品类别数据','detailList'=>'具体物品列表数据','collect'=>'物品统计'),
+          'supplier'=>array(
+              'list'=>'供应商列表','add'=>'添加供应商','detail'=>'供应商详情','edit'=>'修改供应商详情'),
+          'customer'=>array(
+              'list'=>'客户列表','add'=>'添加客户','detail'=>'客户详情','edit'=>'修改客户信息'),
+          'warehouse'=>array(
+              'list'=>'仓储列表'),
+          'system'=>array('info'=>'系统信息','account'=>'修改密码'),
+          'staff'=>array('list'=>'员工类别','员工列表'),
+          'admin'=>array('list'=>'用户列表'),
+          'logout'=>'注销'
+  );
     
   }
   
@@ -53,6 +72,7 @@ class base extends c{
     $param['al_content'] = view($view,$param,TRUE);
     $param['u'] = $this->u;
     $param['menu']  = $this->menu;
+    $param['tabCell'] = $this->tabCell;
     header("Content-type: text/html; charset=utf-8");
     view('v/layout/template',$param);
   }
@@ -72,7 +92,7 @@ class base extends c{
     $conf = array('username'=>'required','password'=>'required');
     $err = validate($conf);
     if (is_array($err)) {
-      //$err['info'] = $this->m->login_err;
+      //$err['info'] = $this->m->login_err; 
       $param['err'] = $err;
       $param['page_title'] = $param['meta_keywords'] = $param['meta_description'] = '登录';
       //$this->display('v/user/login',$param); 

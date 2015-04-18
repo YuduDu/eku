@@ -11,11 +11,13 @@
 </head>
 <body>
 <div class="win" >
+  <?php if(!empty($msg)){?>
   <h1><?=$msg?></h1>
   <div class="msg" ><?=$ext_msg?></div>
   <div class="msg1" >页面跳转至: <a href="<?=$url?>" ><?=$url?></a>
    <br />你可以点击 <a href="<?=$url?>" >直接前往</a>
   </div>
+  <?php }?>
 </div>
 </body>
 </html>

@@ -7,7 +7,16 @@ class dashboard extends base{
   
   function index()
   {
-  	$this->display('v/dashboard/index');
-    //header("location:?/store/");
+  	redirect(BASE.'dashboard/notice','','',0);    
   }
+
+  function notice(){
+	   $this->display('v/dashboard/index');
+  }
+
+  function add(){
+
+      $this->display('v/dashboard/add');
+  }
+
 }
