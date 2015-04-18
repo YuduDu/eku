@@ -9,7 +9,7 @@
   <script type="text/javascript" src="static/js/jquery.min.js"></script>
   <script type="text/javascript" src="static/js/bootstrap.min.js"></script>
 </head>
-<body>
+<body id="app">
     <nav class="navbar navbar-inverse">
       <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
@@ -33,22 +33,15 @@
        <!--  </div> -->
     </nav>
 
-    <div class="container">
-        <ul class="nav nav-pills">
-          <? $controller = seg(1); foreach($tabCell[$controller] as $k=>$v){?>
-            <li role="presentation" class="<?=$k==(seg(2)?seg(2):'index')?'active ':''?>"><a href="?/<?=$controller.'/'.$k?>/" ><?=$v?></a></li>
-          <?}?>
-        </ul>
-      <div class="row-fluid">
-        <div class="span12">
-          <div class="row-fluid">
-          <?=$al_content?>
-          </div>
-          <div class="content" > 
-          </div> 
-        </div>
-      </div>
-    </div> <!-- /container -->
+    
+    <div id="contentView">
+      <ul class="nav nav-pills">
+        <? $controller = seg(1); foreach($tabCell[$controller] as $k=>$v){?>
+          <li role="presentation" class="<?=$k==(seg(2)?seg(2):'index')?'active ':''?>"><a href="?/<?=$controller.'/'.$k?>/" ><?=$v?></a></li>
+        <?}?>
+      </ul>
+      <div class="viewDetail"><?=$al_content?></div>
+  </div> <!-- /container -->
     
 </body>
 </html>

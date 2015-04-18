@@ -15,6 +15,10 @@ class dashboard extends base{
   }
 
   function add(){
+      if(isset($_POST['addInBound'])){
+        $this->m = load('m/bound_stock');
+        $this->m->Inbound($_POST);
+      }
 
       $this->display('v/dashboard/add');
   }

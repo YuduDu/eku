@@ -32,7 +32,7 @@ class base extends c{
 
   $this->tabCell = array(
           'dashboard'=>array(
-              'notice'=>'库存通知','add'=>'添加库存','out'=>'出库','inner_trasition'=>'内部流转'),
+              'notice'=>'库存通知','add'=>'添加货物','out'=>'出库','inner_trasition'=>'内部流转'),
           'stock'=>array(
               'dashboard'=>'dashboard','addList'=>'入库数据','outList'=>'出库数据','inner_trasition'=>'内部流转'),
           'category'=>array(
@@ -44,7 +44,8 @@ class base extends c{
           'warehouse'=>array(
               'list'=>'仓储列表'),
           'system'=>array('info'=>'系统信息','account'=>'修改密码'),
-          'staff'=>array('list'=>'员工类别','员工列表'),
+          'staff'=>array(
+              'category_list'=>'员工类别列表','category_add'=>'添加员工类别','staff_list'=>'员工列表','staff_add'=>'添加员工'),
           'admin'=>array('list'=>'用户列表'),
           'logout'=>'注销'
   );

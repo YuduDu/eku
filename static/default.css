@@ -2,8 +2,8 @@
 @import url(css/bootstrap-responsive.min.css);
 */
 
-body {/*padding-top: 50px;*/ background:#eee;/* 60px to make the container go all the way to the bottom of the topbar */}
-
+body {/*padding-top: 50px;*/ /* 60px to make the container go all the way to the bottom of the topbar */}
+#app{background-color: #eeeeee;}
 .brand{font-weight: bold;font-style: italic;}
 .c1{color:#000;background:#f6f6f6;padding-top:10px;}
 .padding{padding:20px;background:#f6f6f6;}
@@ -298,5 +298,7 @@ outline: none;
 .tabUl li{float: left;display: list-item;line-height: 20px;}
 .tabUl li a{padding: 0 5px;}
 .tabUl .tabActive{color: #aaaaaa;}
-
-
+#contentView{width: 1000px;margin: 0 auto;}
+.viewDetail{margin-top: 15px;margin-left: 10px;background-color: #ffffff;padding: 15px;border-radius: 5px;}
+form input[type="text"]{width:200px; }
+.form-group{margin:10px 0;}
