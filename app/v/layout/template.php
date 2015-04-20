@@ -40,7 +40,16 @@
           <li role="presentation" class="<?=$k==(seg(2)?seg(2):'index')?'active ':''?>"><a href="?/<?=$controller.'/'.$k?>/" ><?=$v?></a></li>
         <?}?>
       </ul>
-      <div class="viewDetail"><?=$al_content?></div>
+      <div class="viewDetail">
+        <?=$al_content?>
+        <p style="color:red;margin-top:10px;">
+          <? foreach($err as $e=>$r) {
+                echo '字段'.$e.$r.' . ';
+          }
+              echo $msg;
+          ?>
+        </p>
+      </div>
   </div> <!-- /container -->
     
 </body>

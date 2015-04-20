@@ -299,6 +299,6 @@ outline: none;
 .tabUl li a{padding: 0 5px;}
 .tabUl .tabActive{color: #aaaaaa;}
 #contentView{width: 1000px;margin: 0 auto;}
-.viewDetail{margin-top: 15px;margin-left: 10px;background-color: #ffffff;padding: 15px;border-radius: 5px;}
+.viewDetail{margin-top: 15px;margin-left: 0px;background-color: #ffffff;padding: 15px;border-radius: 5px;}
 form input[type="text"]{width:200px; }
 .form-group{margin:10px 0;}

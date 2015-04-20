@@ -2,6 +2,8 @@
 load('lib/utility',false);
 class base extends c{
   public $menu;
+  public $err;
+  public $msg;
   function __construct()
   {
     global $db_config;
@@ -16,6 +18,9 @@ class base extends c{
       $this->sae_install();
       exit;
     }
+
+    $this->err = array();
+    $this->msg = '';
 
     $this->menu = array(
           'dashboard'=>'Dashboard',
@@ -38,7 +43,7 @@ class base extends c{
           'category'=>array(
               'list'=>'物品类别数据','detailList'=>'具体物品列表数据','collect'=>'物品统计'),
           'supplier'=>array(
-              'list'=>'供应商列表','add'=>'添加供应商','detail'=>'供应商详情','edit'=>'修改供应商详情'),
+              'supplier_list'=>'供应商列表','add'=>'添加供应商','detail'=>'供应商详情','edit'=>'修改供应商详情'),
           'customer'=>array(
               'list'=>'客户列表','add'=>'添加客户','detail'=>'客户详情','edit'=>'修改客户信息'),
           'warehouse'=>array(
@@ -74,6 +79,8 @@ class base extends c{
     $param['u'] = $this->u;
     $param['menu']  = $this->menu;
     $param['tabCell'] = $this->tabCell;
+    $param['err'] = $this->err;
+    $param['msg'] = $this->msg;
     header("Content-type: text/html; charset=utf-8");
     view('v/layout/template',$param);
   }
