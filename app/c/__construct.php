@@ -25,11 +25,11 @@ class base extends c{
     $this->menu = array(
           'dashboard'=>'Dashboard',
           'stock'=>'库存单管理',
-          'category'=>'物品类管理',
+          'item'=>'物品类管理',
           'supplier'=>'供应商管理',
           'customer'=>'客户管理',
           'warehouse'=>'仓库管理',
-          'system'=>'系统信息',
+          'systemInfo'=>'系统信息',
           'staff'=>'员工管理',
           'admin'=>'系统管理',
           'logout'=>'注销'
@@ -40,18 +40,18 @@ class base extends c{
               'notice'=>'库存通知','add'=>'添加货物','out'=>'出库','inner_trasition'=>'内部流转'),
           'stock'=>array(
               'dashboard'=>'dashboard','addList'=>'入库数据','outList'=>'出库数据','inner_trasition'=>'内部流转'),
-          'category'=>array(
-              'list'=>'物品类别数据','detailList'=>'具体物品列表数据','collect'=>'物品统计'),
+          'item'=>array(
+              'item_list'=>'物品类别', 'item_add'=>'添加物品类别'),//'detailList'=>'具体物品列表数据','collect'=>'物品统计'),
           'supplier'=>array(
-              'supplier_list'=>'供应商列表','add'=>'添加供应商','detail'=>'供应商详情','edit'=>'修改供应商详情'),
+              'supplier_list'=>'供应商列表','add'=>'添加供应商'),//,'detail'=>'供应商详情','edit'=>'修改供应商详情'),
           'customer'=>array(
-              'list'=>'客户列表','add'=>'添加客户','detail'=>'客户详情','edit'=>'修改客户信息'),
+              'customer_list'=>'客户列表','add'=>'添加客户','detail'=>'客户详情','edit'=>'修改客户信息'),
           'warehouse'=>array(
-              'list'=>'仓储列表'),
-          'system'=>array('info'=>'系统信息','account'=>'修改密码'),
+              'warehouse_list'=>'仓储列表'),
+          'systemInfo'=>array('info'=>'系统信息','account'=>'修改密码'),
           'staff'=>array(
               'category_list'=>'员工类别列表','category_add'=>'添加员工类别','staff_list'=>'员工列表','staff_add'=>'添加员工'),
-          'admin'=>array('list'=>'用户列表'),
+          'admin'=>array('admin_list'=>'用户列表'),
           'logout'=>'注销'
   );
     

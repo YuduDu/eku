@@ -24,5 +24,10 @@ class supplier_m extends m {
       return $res;
   }
 
+  function supplier_getBySid($Sid){
+      $res = $this->db->query("select * from Suppliers where Sid = $Sid limit 0,1");
+      return $res;
+  }
+
 
 }

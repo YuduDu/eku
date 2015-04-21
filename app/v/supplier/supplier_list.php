@@ -10,7 +10,8 @@
         <th>供应商电话</th>
         <th>供应商银行</th>
         <th>供应商银行地址</th>        
-  			<th>操作</th>
+  			<th>查看</th>
+        <th>编辑</th>
   		</tr>
       </thead>
       <tbody>
@@ -24,7 +25,8 @@
         <td><?=$v['Sphone']?></td>
         <td><?=$v['Sbank']?></td>
         <td><?=$v['Saccount']?></td>
-  			<td><a href="">编辑</a></td>
+        <td><a href="?/supplier/see_supplier/Sid/<?=$v['Sid']?>">查看</td>
+  			<td><a href="?/supplier/mod_supplier/Sid/<?=$v['Sid']?>">编辑</a></td>
   		</tr>
   		<? }?>
     	</tbody>
