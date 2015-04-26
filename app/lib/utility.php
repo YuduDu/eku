@@ -1,4 +1,4 @@
-<?
+<?php
 // 验证 FORM 有效性
 function validate($conf = array(),$data = array()){
   $data = empty($data)?$_POST:$data;

@@ -3,26 +3,26 @@
   <table class="table table-striped table-bordered">
   	<thead>
   		<tr>
-        <th>供应商编号</th>
-  			<th>供应商名字</th>
-  			<th>联系人</th>
-        <th>供应商地址</th>
-        <th>供应商邮编</th>
-        <th>供应商电话</th>
-        <th>供应商银行</th>
-        <th>供应商银行地址</th>        
+        	<th>客户编号</th>
+  			<th>客户公司名称</th>
+  			<th>客户联系人姓名</th>
+        	<th>客户地址</th>
+        	<th>客户邮编</th>
+        	<th>客户电话</th>
+        	<th>客户银行</th>
+        	<th>客户银行账号</th>        
   		</tr>
       </thead>
       <tbody>
   		<tr>
-        <td><?php echo $sup['Sid'];?></td>
-  			<td><?php echo $sup['Sname'];?></td>
-  			<td><?php echo $sup['Scontact'];?></td>
-        <td><?php echo $sup['Saddress'];?></td>
-        <td><?php echo $sup['Spostcode'];?></td>
-        <td><?php echo $sup['Sphone'];?></td>
-        <td><?php echo $sup['Sbank'];?></td>
-        <td><?php echo $sup['Saccount'];?></td>
+        	<td><?php echo $customer['Cid'];?></td>
+  			<td><?php echo $customer['Cname'];?></td>
+  			<td><?php echo $customer['Ccontact'];?></td>
+	        <td><?php echo $customer['Caddress'];?></td>
+	        <td><?php echo $customer['Cpostcode'];?></td>
+	        <td><?php echo $customer['Cphone'];?></td>
+	        <td><?php echo $customer['Cbank'];?></td>
+	        <td><?php echo $customer['Caccount'];?></td>
   		</tr>
     	</tbody>
   </table>

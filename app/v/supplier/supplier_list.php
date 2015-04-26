@@ -15,20 +15,20 @@
   		</tr>
       </thead>
       <tbody>
-  		<? foreach($res as $v) {?>
+  		<?php foreach($res as $v) {?>
   		<tr>
-        <td><?=$v['Sid']?></td>
-  			<td><?=$v['Sname']?></td>
-  			<td><?=$v['Scontact']?></td>
-        <td><?=$v['Saddress']?></td>
-        <td><?=$v['Spostcode']?></td>
-        <td><?=$v['Sphone']?></td>
-        <td><?=$v['Sbank']?></td>
-        <td><?=$v['Saccount']?></td>
-        <td><a href="?/supplier/see_supplier/Sid/<?=$v['Sid']?>">查看</td>
-  			<td><a href="?/supplier/mod_supplier/Sid/<?=$v['Sid']?>">编辑</a></td>
+        <td><?php echo $v['Sid'];?></td>
+  			<td><?php echo $v['Sname'];?></td>
+  			<td><?php echo $v['Scontact'];?></td>
+        <td><?php echo $v['Saddress'];?></td>
+        <td><?php echo $v['Spostcode'];?></td>
+        <td><?php echo $v['Sphone'];?></td>
+        <td><?php echo $v['Sbank'];?></td>
+        <td><?php echo $v['Saccount'];?></td>
+        <td><a href="?/supplier/see_supplier/Sid/<?php echo $v['Sid'];?>">查看</td>
+  			<td><a href="?/supplier/mod_supplier/Sid/<?php echo $v['Sid'];?>">编辑</a></td>
   		</tr>
-  		<? }?>
+  		<?php }?>
     	</tbody>
   </table>
 </div>

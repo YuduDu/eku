@@ -10,15 +10,15 @@
   		</tr>
       </thead>
       <tbody>
-  		<? foreach($res as $v) {?>
+  		<?php foreach($res as $v) {?>
   		<tr>
-        <td><?=$v['Sid']?></td>
-        <td><?=$v['Sname']?></td>
-  			<td><?=$v['SCid']?></td>
-  			<td><?=$v['Sphone']?></td>
+        <td><?php echo $v['Sid']?></td>
+        <td><?php echo $v['Sname']?></td>
+  			<td><?php echo $v['SCid']?></td>
+  			<td><?php echo $v['Sphone']?></td>
   			<td><a href="">编辑</a></td>
   		</tr>
-  		<? }?>
+  		<?php }?>
     	</tbody>
   </table>
 </div>

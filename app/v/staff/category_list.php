@@ -8,13 +8,13 @@
   		</tr>
       </thead>
       <tbody>
-  		<? foreach($res as $v) {?>
+  		<?php foreach($res as $v) {?>
   		<tr>
-  			<td><?=$v['SCid']?></td>
-  			<td><?=$v['SType']?></td>
+  			<td><?php echo $v['SCid']?></td>
+  			<td><?php echo $v['SType']?></td>
   			<td><a href="">编辑</a></td>
   		</tr>
-  		<? }?>
+  		<?php }?>
     	</tbody>
   </table>
 </div>

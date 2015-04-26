@@ -12,6 +12,7 @@ class admin extends base{
   }
 
   function admin_list(){
+    
   	$this->display('v/admin/admin_list');
   }
 

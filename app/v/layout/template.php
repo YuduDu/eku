@@ -26,9 +26,9 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <!-- <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"> -->
         <ul class="nav navbar-nav">
-          <? foreach($menu as $k=>$v){?>
-                <li class="<?=$k==(seg(1)?seg(1):'index')?'active ':''?>bt" ><a href="?/<?=$k?>/" ><?=$v?></a></li>
-          <?}?>
+          <?php foreach($menu as $k=>$v){?>
+                <li class="<?php echo $k==(seg(1)?seg(1):'index')?'active ':'';?>bt" ><a href="?/<?php echo $k;?>/" ><?php echo $v;?></a></li>
+          <?php }?>
         </ul>
        <!--  </div> -->
     </nav>
@@ -36,14 +36,14 @@
     
     <div id="contentView">
       <ul class="nav nav-pills">
-        <? $controller = seg(1); foreach($tabCell[$controller] as $k=>$v){?>
-          <li role="presentation" class="<?=$k==(seg(2)?seg(2):'index')?'active ':''?>"><a href="?/<?=$controller.'/'.$k?>/" ><?=$v?></a></li>
-        <?}?>
+        <?php $controller = seg(1); foreach($tabCell[$controller] as $k=>$v){?>
+          <li role="presentation" class="<?php echo $k==(seg(2)?seg(2):'index')?'active ':''?>"><a href="?/<?php echo $controller.'/'.$k?>/" ><?php echo $v;?></a></li>
+        <?php }?>
       </ul>
       <div class="viewDetail">
-        <?=$al_content?>
+        <?php echo $al_content;?>
         <p style="color:red;margin-top:10px;">
-          <? foreach($err as $e=>$r) {
+          <?php foreach($err as $e=>$r) {
                 echo '字段'.$e.$r.' . ';
           }
               echo $msg;
