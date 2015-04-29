@@ -15,5 +15,8 @@ class systemInfo extends base{
   	$this->display('v/systemInfo/info');
   }
 
+  function account(){
+    $this->display('v/systemInfo/account');
+  }
 
 }

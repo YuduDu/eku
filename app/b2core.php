@@ -128,6 +128,7 @@ function seg($i)
   return isset($seg[$i])?$seg[$i]:false;
 }
 
+
 /* 调用 view 文件
 * function view($view,$param = array(),$cache = FALSE)
 * $view 是模板文件相对 app/v/ 目录的地址，地址应去除 .php 文件后缀
@@ -287,7 +288,8 @@ class m {
         $query_list[] = "`$f` = '$elem[$f]'";
       }
     }
-    $this->db->query("update `$this->table` set ".implode(',',$query_list)." where ".$this->key." ='$id'" );
+    //var_dump("update `$this->table` set ".implode(',',$query_list)." where ".$this->key." ='$id'" );exit();
+    return $this->db->query("update `$this->table` set ".implode(',',$query_list)." where ".$this->key." ='$id'" );
   }
 
   // 统计数量

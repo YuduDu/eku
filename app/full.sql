@@ -175,6 +175,7 @@ ENGINE = InnoDB;
 ##-- Table Stock_collection 每个物品的库存统计表
 
 CREATE TABLE IF NOT EXISTS Stock_collection (
+  Iid INT NOT NULL,  ##额外增加
   Remain_Amount FLOAT NOT NULL,##--剩余的数量
   Items_Iname VARCHAR(100) NOT NULL,##--物品的名称
   PRIMARY KEY (Items_Iname),
@@ -233,7 +234,7 @@ CREATE TABLE IF NOT EXISTS Inbound (
   CreateTime TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,##--入库单创建时间
   Approver_id INT NULL DEFAULT NULL,##--同意入库的员工编号
   Suppliers_Sid INT NOT NULL,##--供货商编号
-  Deliverer VARCHAR(20) NULL,##--送货人姓名
+  Deliverer VARCHAR(20) NULL,##--送货人姓名  
   PRIMARY KEY (Inbound_id),
   INDEX Approver_idx (Approver_id ASC),
   INDEX Warehouse_entry_Suppliers1_idx (Suppliers_Sid ASC),
@@ -373,27 +374,27 @@ DROP TRIGGER IF EXISTS Inbound_details_AFTER_INSERT;
 DELIMITER $$
 CREATE TRIGGER Outbound_AFTER_INSERT AFTER INSERT ON Outbound FOR EACH ROW ##--每次向Outbound中插入数据之后，将出货单编号，客户编号和创建时间插入客户出货单统计表中
 BEGIN
-  INSERT INTO Customers_Order_statistics SET Outbound_id=NEW.Outbound_id, Cid=NEW.Customer_Cid, CreateTime=New.CreateTime;
+  INSERT INTO Customer_Order_statistics SET Outbound_id=NEW.Outbound_id, Cid=NEW.Customer_Cid, CreateTime=New.CreateTime;
 END;
 
 CREATE TRIGGER Outbound_details_AFTER_INSERT AFTER INSERT ON Outbound_details FOR EACH ROW ##--每次向出货单详情Outbound_detail中插入数据之后，根据出货单详情更新客户出货单统计表的总金额
 BEGIN
-  UPDATE Customer_Order_statistics SET Money=Money+cast(NEW.Amount AS DECIMAL(10,2))*NEW.Unit_price WHERE Outbound_id=NEW.Outbound_id;
+  UPDATE Customer_Order_statistics SET Money=Money+NEW.Amount*NEW.Unit_price WHERE Outbound_id=NEW.Outbound_id;
 END;
 
 CREATE TRIGGER Stocks_AFTER_INSERT AFTER INSERT ON Stocks FOR EACH ROW ##--每次有新的库存项时，刷新库存统计表，如果该物品已经存在就更新剩余数量，如果不存在就新建一行数据
 BEGIN
- INSERT INTO Stock_collection (Iid, Remain_Amount,Wid) VALUES (NEW.Stocks_Iname, NEW.Stockamount, NEW.Stocks_Wid) ON DUPLICATE KEY UPDATE Remain_Amount=Remain_Amount+NEW.Stockamount;
+ INSERT INTO Stock_collection (Items_Iname, Remain_Amount) VALUES (NEW.Stocks_Iname, NEW.Stockamount) ON DUPLICATE KEY UPDATE Remain_Amount=Remain_Amount+NEW.Stockamount;
 END;
 
 CREATE TRIGGER Stocks_BEFORE_UPDATE BEFORE UPDATE ON Stocks FOR EACH ROW ##--每次更新库存项之前，更新库存统计表，减去当前要更新的库存项的量，刷新剩余数量。
 BEGIN
-  UPDATE Stock_collection set Remain_Amount=Remain_Amount-OLD.Stockamount WHERE Iid=OLD.Stockid;
+  UPDATE Stock_collection set Remain_Amount=Remain_Amount-OLD.Stockamount WHERE Items_Iname=OLD.Stocks_Iname;
 END;
 
 CREATE TRIGGER Stocks_AFTER_UPDATE AFTER UPDATE ON Stocks FOR EACH ROW ##--每次更新库存项之后，更新库存统计表，加上更新后的库存项的量，刷新剩余数量。这样能保证一直剩余数量一直在更新，不会遗漏
 BEGIN
-  UPDATE Stock_collection set Remain_Amount=Remain_Amount+NEW.Stockamount WHERE Iid=OLD.Stockid;
+  UPDATE Stock_collection set Remain_Amount=Remain_Amount+NEW.Stockamount WHERE Items_Iname=OLD.Stocks_Iname;
 END;
 
 CREATE TRIGGER Stocks_BEFORE_DELETE BEFORE DELETE ON Stocks FOR EACH ROW ##--每次删除库存项时，更新库存统计表，剩余数量减去库存项的数量； 将这个库存项加到历史库存项中
@@ -409,7 +410,7 @@ END;
 
 CREATE TRIGGER Inbound_details_AFTER_INSERT AFTER INSERT ON Inbound_details FOR EACH ROW##--插入新的入库单详情后，将入库单的总金额插入到对应的入库单数据中。
 BEGIN
-  UPDATE Suppliers_Order_statistics SET Money=Money+cast(NEW.Amount AS DECIMAL(10,2))*NEW.Unit_Price WHERE Inbound_id=NEW.Inbound_id;
+  UPDATE Suppliers_Order_statistics SET Money=Money+NEW.Amount*NEW.Unit_Price WHERE Inbound_id=NEW.Inbound_id;
 END; $$
 
 DELIMITER $$

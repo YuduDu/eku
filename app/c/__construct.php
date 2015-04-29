@@ -5,8 +5,14 @@ class base extends c{
   public $err;
   public $msg;
   public $addParams;
+  public $upParams;
   function __construct()
   {
+    $this->needCheck = false;
+    if(empty($_SESSION['STOCK_USER']) && $this->needCheck){
+      redirect('?/account/login','','',0);
+    }
+
     global $db_config,$db;
 
     $db_config = array(
@@ -62,16 +68,26 @@ class base extends c{
           'systemInfo'=>array('info'=>'系统信息','account'=>'修改密码'),
           'staff'=>array(
               'category_list'=>'员工类别列表','category_add'=>'添加员工类别','staff_list'=>'员工列表','staff_add'=>'添加员工'),
-          'admin'=>array('admin_list'=>'用户列表'),
+          'admin'=>array(
+              'admin_list'=>'用户列表','admin_add'=>'添加用户'),
           'logout'=>'注销'
   );
 
+  //添加参数
   $this->addParams = array(
       'submitName'=>'_add', //提交按钮
       'required'=>array(),  //必填字段
       'addCondition'=>false, //排重条件
       'addConditionMsg'=>'请勿重复添加',  //出现重复时，给出提示文字
       'addExcute'=>array('m'=>object,'method'=>''),  //执行添加
+      'view'=>'v/'  //视图
+  );
+
+  //更新参数
+  $this->upParams = array(
+      'submitName'=>'_edit',  //提交按钮
+      'required'=>array(),  //必填字段
+      'upExcute'=>array(),  //执行更新
       'view'=>'v/'  //视图
   );
     
@@ -209,6 +225,32 @@ class base extends c{
     }
     $this->display($view);
   }
+
+  //更新
+  // function actionUpdate(){
+  //   $submitName = $this->upParams['submitName'];
+  //   $required = $this->upParams['required'];
+  //   $upExcute = $this->upParams['upExcute'];
+  //   $view = $this->upParams['view'];
+  //   $reqArr = array();
+  //   foreach($required as $v){
+  //     $reqArr[$v] = 'required';
+  //   }
+  //   if(isset($_POST[$submitName])){
+  //     $conf = $reqArr;
+  //     $err = validate($conf);
+  //     if ( $err === TRUE ) {
+  //         $m = $upExcute['m'];
+  //         if($m->$upExcute['method']()){
+  //           $this->msg = '修改成功'
+  //         }else{
+  //           $this->msg = '修改失败';
+  //         }
+  //     }else{
+  //       $this->err = $err;
+  //     }
+  //   }
+  // }
 
 
 
