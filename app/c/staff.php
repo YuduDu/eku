@@ -36,6 +36,23 @@ class staff extends base{
     $this->display('v/staff/category_add');
   }
 
+  //员工类别修改
+  function category_edit(){
+    if(isset($_POST['category_edit'])){
+      if(!empty($_POST['SCid']) && !empty($_POST['SType']) ){
+        $this->m->table = 'Staff_Category';
+        $this->m->key = 'SCid';
+        $up = $this->m->update(seg(4));
+        $this->msg = $up?'修改成功':'修改失败';
+      }else{
+        $this->msg = '字段不能为空';
+      }
+    }
+
+    $res = $this->m->category_getBySCid(seg(4));
+    $this->display('v/staff/category_edit',array('category'=>$res[0]));
+  }
+
   //员工列表
   function staff_list(){
     $res = $this->m->staff_getAll();
@@ -60,5 +77,14 @@ class staff extends base{
 
     $this->display('v/staff/staff_add');
   }
+
+  function staff_edit(){
+    if(isset($_POST['staff_edit'])){
+
+    }
+
+    $this->display('v/staff/staff_edit');
+  }
+
 
 }

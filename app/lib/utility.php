@@ -43,7 +43,7 @@ function pagination($tot , $cur = 1, $psize = 30 , $base_url = '')
   $cur = $cur < 1?1:$cur;
   $tot_page = ceil($tot / $psize);
   if($tot_page <= 1 )return; //no pagin
-    $result= ' <div class="pagination" >';
+    $result= '<nav><ul class="pagination">';
     $startp = intval(($cur-1)/10);
     if($tot_page >($startp+1)*10 ) {
       $total=($startp+1)*10;
@@ -53,18 +53,18 @@ function pagination($tot , $cur = 1, $psize = 30 , $base_url = '')
   }
 
   if( $cur > 10 ) {
-    $result.="[<A HREF=\"".$base_url."1\" >第一页</A>][<A HREF='".$base_url.($startp*10-9)."'>上10页</A>] ";
+    $result.='<li><a HREF="'.$base_url.'1" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li><li><a HREF="'.$base_url.($startp*10-9).'">上10页</a></li>';
   }
 
   for($i=$startp*10+1;$i<=$total;$i++)
   {
-    if( $cur == $i )$result.=' <span class="cur" >'.$i.'</span> ';
-    else $result.=' <A href="'.$base_url.$i.'">'.$i.'</A> ';
+    if( $cur == $i )$result.='<li class="active"><a href="#">'.$i.'<span class="sr-only">(current)</span></a></li>';
+    else $result.='<li><a href="'.$base_url.$i.'">'.$i.'</a></li>';
   }
 
   if( $tot_page>($startp*10+10) )
-    $result.=' [ <A HREF="'.$base_url.($startp*10+11).'" > 下10页 </A> ]';
-    $result.= ' </div>';
+    $result.=' <li><a HREF="'.$base_url.($startp*10+11).'" aria-label="Next"><span aria-hidden="true"> 下10页 </span></a></li>';
+    $result.= '</ul></nav>';
     return $result;
 }
 

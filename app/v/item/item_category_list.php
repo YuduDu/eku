@@ -14,9 +14,9 @@
   		<tr>
   			<td><?php echo $v['ICname']?></td>
   			<td><?php echo $v['Spec']?></td>
-  			<td><a href="?/item/item_see/ICname/<?php echo $v['ICname'];?>">查看</a></td>
-        <td><a href="?/item/item_mod/ICname/1">修改</a></td>
-        <td><a href="?/item/item_remove/ICname/1">删除</a></td>
+  			<td><a href="?/item/item_see/ICname/<?php echo urlencode($v['ICname']);?>">查看</a></td>
+        <td><a href="?/item/item_category_edit/ICname/<?php echo urlencode($v['ICname']);?>">修改</a></td>
+        <td><a href="?/item/item_category_remove/ICname/<?php echo urlencode($v['ICname']);?>">删除</a></td>
   		</tr>
   		<?php }?>
     	</tbody>

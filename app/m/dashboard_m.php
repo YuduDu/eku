@@ -5,6 +5,8 @@ class dashboard_m extends m {
   public $table_Stocks;
   public $table_Warehouses;
   public $table_Outbound;
+  public $table_Outbound_details;
+  public $table_Inner_Trasition;
   function __construct()
   {
     global $app_id;
@@ -15,6 +17,8 @@ class dashboard_m extends m {
     $this->table_Stocks = array('Stocks_Wid','Stocks_Iname','Stockamount','Stockarea');
     $this->table_Warehouses = array('Admin_id');
     $this->table_Outbound = array('Customer_Cid','Approver_id','Consignee');
+    $this->table_Outbound_details = array('Outbound_id','Outbound_Iname','Amount','Unit_price','Warehouse_Wid','Outbound_Stockid');
+    $this->table_Inner_Trasition = array('I_T_Wid','Amount','Items_Iname','Operate','Stockid');
   }
    
    /*Inbound操作*/
@@ -64,7 +68,23 @@ class dashboard_m extends m {
     if(!$param)$param = $_POST;
     $this->table = 'Outbound';
     $this->fields = $this->table_Outbound;
-    return $this->add($param):false;
+    return $this->add($param);
+  }
+
+  /*Outbound_details操作*/
+  function outbound_detail_add($param=false) {
+    if(!$param)$param = $_POST;
+    $this->table = 'Outbound_details';
+    $this->fields = $this->table_Outbound_details;
+    return $this->add($param);
+  }
+
+  /*inner_trasition操作*/
+  function inner_trasition_add($param=false){
+    if(!$param)$param = $_POST;
+    $this->table = 'Inner_Trasition';
+    $this->fields = $this->table_Inner_Trasition;
+    return $this->add($param);
   }
 
 

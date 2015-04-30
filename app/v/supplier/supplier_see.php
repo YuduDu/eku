@@ -40,18 +40,12 @@
       </tr>
       </thead>
       <tbody>
-      <tr>
-        <td>假数据</td>
-        <td>假数据</td>
-        <td>假数据</td>
-        <td>假数据</td>
-      </tr>
-      <?php foreach($res as $v) {?>
+      <?php foreach($suppliers_order as $v) {?>
       <tr>
         <td><?php echo $v['Sid'];?></td>
-        <td><?php echo $v['Sname'];?></td>
-        <td><?php echo $v['Scontact'];?></td>
-        <td><?php echo $v['Saddress'];?></td>
+        <td><?php echo $v['CreateTime'];?></td>
+        <td><?php echo $v['Money'];?></td>
+        <td><?php echo $v['Inbound_id'];?></td>
       </tr>
       <?php }?>
       </tbody>

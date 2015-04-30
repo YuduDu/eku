@@ -4,9 +4,9 @@ error_reporting(E_ERROR);
 
 // 配置url路由
 $route_config = array(
-  '/login/'=>'/user/login/',
-  '/reg/'=>'/user/reg/',
-  '/logout/'=>'/user/logout/',
+  '/login/'=>'/account/login/',
+  //'/reg/'=>'/user/reg/',
+  '/logout/'=>'/account/logout/',
 );
 
 if(file_exists(APP.'config_user.php')) require(APP.'config_user.php');

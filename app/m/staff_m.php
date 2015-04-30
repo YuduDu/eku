@@ -8,7 +8,7 @@ class staff_m extends m {
 
     $this->table_Staff_Category = array('SCid','SType');
     $this->table_Staffs = array('Sname','SCid','Sphone');
-
+    $this->fields = $this->table_Staff_Category;
   }
    
   function category_add($param=false) {
@@ -27,6 +27,7 @@ class staff_m extends m {
       $res = $this->db->query("select * from Staff_Category order by SCid asc");
       return $res;
   }
+
 
 
   function staff_add($param=false){

@@ -6,10 +6,10 @@ class base extends c{
   public $msg;
   public $addParams;
   public $upParams;
-  function __construct()
+  function __construct($needCheck=true)
   {
-    $this->needCheck = false;
-    if(empty($_SESSION['STOCK_USER']) && $this->needCheck){
+    session_start();
+    if(empty($_SESSION['STOCK_USER']) && $needCheck){
       redirect('?/account/login','','',0);
     }
 
@@ -53,10 +53,10 @@ class base extends c{
    );
 
   $this->tabCell = array(
-          'dashboard'=>array(
-              'notice'=>'库存通知','add'=>'添加货物','out'=>'出库','inner_trasition'=>'内部流转'),
+          'dashboard'=>array( //'notice'=>'库存通知',
+              'add'=>'添加货物','out'=>'出库','inner_trasition'=>'内部流转'),
           'stock'=>array(
-              'dashboard'=>'dashboard','addList'=>'入库数据','outList'=>'出库数据','inner_trasition'=>'内部流转'),
+              'inbound_list'=>'入库数据','outbound_list'=>'出库数据','inner_list'=>'内部流转'),
           'item'=>array(
               'item_category_list'=>'物品类别', 'item_category_add'=>'添加物品类别','item_add'=>'添加物品'),//'detailList'=>'具体物品列表数据','collect'=>'物品统计'),
           'supplier'=>array(
@@ -64,7 +64,7 @@ class base extends c{
           'customer'=>array(
               'customer_list'=>'客户列表','add'=>'添加客户'),
           'warehouse'=>array(
-              'warehouse_list'=>'仓储列表'),
+              'warehouse_list'=>'仓库列表','warehouse_add'=>'添加仓库'),
           'systemInfo'=>array('info'=>'系统信息','account'=>'修改密码'),
           'staff'=>array(
               'category_list'=>'员工类别列表','category_add'=>'添加员工类别','staff_list'=>'员工列表','staff_add'=>'添加员工'),

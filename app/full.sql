@@ -9,6 +9,7 @@ DROP TABLE IF EXISTS Staff_Category ;
 DROP TABLE IF EXISTS Staffs ;
 DROP TABLE IF EXISTS Warehouses;
 DROP TABLE IF EXISTS Outbound ;
+DROP TABLE IF EXISTS Outbound_details ;
 DROP TABLE IF EXISTS Customer_Order_statistics ;
 DROP TABLE IF EXISTS Item_Category ;
 DROP TABLE IF EXISTS Items ;
@@ -17,6 +18,7 @@ DROP TABLE IF EXISTS Stock_collection ;
 DROP TABLE IF EXISTS Stocks ;
 DROP TABLE IF EXISTS Suppliers ;
 DROP TABLE IF EXISTS Inbound ;
+DROP TABLE IF EXISTS Inbound_details;
 DROP TABLE IF EXISTS Suppliers_Order_statistics ;
 DROP TABLE IF EXISTS User ;
 DROP TABLE IF EXISTS History_Stocks ;
@@ -103,7 +105,7 @@ CREATE TABLE IF NOT EXISTS Customer_Order_statistics (
   Cid INT NOT NULL,##--客户的编号
   Money DECIMAL(10,2) NULL,##--交易的总金额
   Outbound_id INT NULL,##--交易单的编号
-  CreateTime DATETIME NULL DEFAULT NULL，##--出货单创建时间表
+  CreateTime DATETIME NULL DEFAULT NULL, ##--出货单创建时间表
   PRIMARY KEY (Outbound_id),
   INDEX Customers1_Cid (Cid ASC),
   INDEX Outbound_id (Outbound_id ASC),
@@ -359,6 +361,10 @@ CREATE TABLE IF NOT EXISTS Inner_Trasition (
     ON DELETE NO ACTION
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
+
+insert into Staff_Category(SCid,SType) VALUES(111,'第一个员工');
+insert into Staffs(Sname,SCid,Sphone) VALUES('一号',111,'18612929171');
+insert into User(Username,Password,Staffs_Sid) VALUES('admin','admin',1);
 
 ##-- create triggers
 

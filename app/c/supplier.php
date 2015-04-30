@@ -36,14 +36,28 @@ class supplier extends base{
   }
 
   function mod_supplier(){
-      $this->display('v/supplier/supplier_mod');
+    $this->m->table = 'Suppliers';
+    $this->m->key = 'Sid';
+    $this->m->fields = array('Sname','Scontact','Saddress','Spostcode','Sphone','Sbank','Saccount');
+    if(isset($_POST['supplier_mod'])){
+      $conf = array('Sname'=>'required','Scontact'=>'required','Saddress'=>'required','Spostcode'=>'required','Sphone'=>'required','Sbank'=>'required','Saccount'=>'required');
+      $err = validate($conf);
+      if ( $err !== TRUE ) {
+        $this->err = $err;
+      }
+      $up = $this->m->update(seg(4));
+      $this->msg = $up?'修改成功':'修改失败';
+    }
+
+    $res = $this->m->get_one(seg(4));
+    $this->display('v/supplier/supplier_mod',array('res'=>$res));
   }
 
   //查看供应商，以及供货数据
   function see_supplier(){
-      $sup = $this->m->supplier_getBySid(seg(4));
-
-      $this->display('v/supplier/supplier_see',array('sup'=>$sup[0]));
+    $sup = $this->m->supplier_getBySid(seg(4));
+    $suppliers_order = $this->m->suppliers_order_statistics_getBySid(seg(4));
+    $this->display('v/supplier/supplier_see',array('sup'=>$sup[0],'suppliers_order'=>$suppliers_order));
   }
 
 

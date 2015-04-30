@@ -1,4 +1,4 @@
-<h4>供应商基本信息</h4>
+<h4>客户基本信息</h4>
 <div class="table-responsive">
   <table class="table table-striped table-bordered">
   	<thead>
@@ -28,7 +28,7 @@
   </table>
 </div>
 
-<h4>供货记录</h4>
+<h4>客户的出货单统计</h4>
 <div class="table-responsive">
   <table class="table table-striped table-bordered">
     <thead>
@@ -40,18 +40,12 @@
       </tr>
       </thead>
       <tbody>
+      <?php foreach($customer_order as $v) {?>
       <tr>
-        <td>假数据</td>
-        <td>假数据</td>
-        <td>假数据</td>
-        <td>假数据</td>
-      </tr>
-      <?php foreach($res as $v) {?>
-      <tr>
-        <td><?php echo $v['Sid'];?></td>
-        <td><?php echo $v['Sname'];?></td>
-        <td><?php echo $v['Scontact'];?></td>
-        <td><?php echo $v['Saddress'];?></td>
+        <td><?php echo $v['Cid'];?></td>
+        <td><?php echo $v['CreateTime'];?></td>
+        <td><?php echo $v['Money'];?></td>
+        <td><?php echo $v['CreateTime'];?></td>
       </tr>
       <?php }?>
       </tbody>

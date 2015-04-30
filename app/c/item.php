@@ -31,8 +31,33 @@ class item extends base{
     $this->display('v/item/item_category_add');
   }
 
+  function item_category_edit(){
+    $this->m->table = 'Item_Category';
+    $this->m->key = 'ICname';
+    $this->m->fields = array('ICname','Spec');
+    $ICname = urldecode(seg(4));
+    if(isset($_POST['item_category_edit'])){
+      $conf = array('ICname'=>'required','Spec'=>'required');
+      $err = validate($conf);
+      if ( $err !== TRUE ) {
+        $this->err = $err;
+      }
+      $up = $this->m->update($ICname);
+      $this->msg = $up?'修改成功':'修改失败';
+    }
+    $res = $this->m->get_one($ICname);
+    $this->display('v/item/item_category_edit',array('res'=>$res));
+  }
+
+  function item_category_remove(){
+    $this->m->table = 'Item_Category';
+    $this->m->key = 'ICname';
+    $this->m->del(urldecode(seg(4)));
+    redirect('?/item/item_category_list','删除成功','',3);
+  }
+
   function item_see(){
-    $items = $this->m->item_getByICname(seg(3));
+    $items = $this->m->item_getByICname(urldecode(seg(4)));
     $this->display('v/item/item_list',array('items'=>$items));
   }
   
@@ -46,6 +71,32 @@ class item extends base{
       'view'=>'v/item/item_add'  //视图
     );
     $this->actionAdd();
+  }
+
+  function item_edit(){
+    $this->m->table = 'Items';
+    $this->m->key = 'Iname';
+    $this->m->fields = array('Iname','ICname','Unit');
+    $Iname = urldecode(seg(4));
+    if(isset($_POST['item_edit'])){
+      $conf = array('ICname'=>'required','Spec'=>'required');
+      $err = validate($conf);
+      if ( $err !== TRUE ) {
+        $this->err = $err;
+      }
+      $up = $this->m->update($Iname);
+      $this->msg = $up?'修改成功':'修改失败';
+      $up && redirect('?/item/item_edit/Iname/'.$_POST['Iname'],'','',0);
+    }
+    $res = $this->m->get_one($Iname);
+    $this->display('v/item/item_edit',array('res'=>$res));
+  }
+
+  function item_remove(){
+    $this->m->table = 'Items';
+    $this->m->key = 'Iname';
+    $this->m->del(urldecode(seg(4)));
+    redirect('?/item/item_category_list','删除成功','',3);
   }
 
 }

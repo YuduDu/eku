@@ -1,7 +1,7 @@
 <form class="form-inline" method="post" action="">
   <div class="form-group">
-      <label>入库操作员工编号：1</label>
-      <input type="hidden" name="Approver_id" value="1">
+      <label>入库操作员工编号：<?php echo $_SESSION['STOCK_Sid'];?></label>
+      <input type="hidden" name="Approver_id" value="<?php echo $_SESSION['STOCK_Sid'];?>">
   </div>
   <br>
 

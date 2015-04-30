@@ -288,6 +288,7 @@ class m {
         $query_list[] = "`$f` = '$elem[$f]'";
       }
     }
+    //var_dump($elem);
     //var_dump("update `$this->table` set ".implode(',',$query_list)." where ".$this->key." ='$id'" );exit();
     return $this->db->query("update `$this->table` set ".implode(',',$query_list)." where ".$this->key." ='$id'" );
   }
@@ -311,7 +312,7 @@ class m {
 
   function get_one($id)
   {
-    $id = is_numeric($id)?$id:0;
+    $id = is_numeric($id)?$id:$id;
     $res =  $this->db->query("select * from `$this->table` where ".$this->key."='$id'");
     if(isset($res[0]))return $res[0];
     return false;

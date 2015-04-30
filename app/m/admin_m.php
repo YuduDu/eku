@@ -27,4 +27,9 @@ class admin_m extends m {
     return $res;
   }
 
+  function admin_login($username,$password){
+    $res = $this->db->query("select * from User where Username = '".$username."' AND Password = '".$password."'");
+    return $res;
+  }
+
 }

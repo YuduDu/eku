@@ -29,5 +29,9 @@ class supplier_m extends m {
       return $res;
   }
 
+  public function suppliers_order_statistics_getBySid($Sid){
+    $res = $this->db->query("select * from Suppliers_Order_statistics where Sid = $Sid");
+    return $res;
+  }
 
 }

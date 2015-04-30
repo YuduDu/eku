@@ -12,7 +12,7 @@
   		<tr>
   			<td><?php echo $v['SCid']?></td>
   			<td><?php echo $v['SType']?></td>
-  			<td><a href="">编辑</a></td>
+  			<td><a href="?/staff/category_edit/SCid/<?php echo $v['SCid'];?>">编辑</a></td>
   		</tr>
   		<?php }?>
     	</tbody>

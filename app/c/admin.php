@@ -49,8 +49,6 @@ class admin extends base{
   function admin_remove(){
     $this->m->key = 'Username';
     $this->m->del(seg(4));
-    // header("HTTP/1.1 301 Moved Permanently");
-    // header ('Location: ?/admin/admin_list');
     redirect('?/admin/admin_list','删除成功','',3);
   }
 

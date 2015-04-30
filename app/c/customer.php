@@ -29,8 +29,27 @@ class customer extends base{
   }
 
   function customer_detail(){
-    $customer = $this->m->customer_getByCid(seg(3));
-    $this->display('v/customer/customer_detail',array('customer'=>$customer[0]));
+    $customer = $this->m->customer_getByCid(seg(4));
+    $customer_order = $this->m->customer_order_statistics_getByCid(seg(4));
+    $this->display('v/customer/customer_detail',array('customer'=>$customer[0],'customer_order'=>$customer_order));
+  }
+
+  function customer_edit(){
+    $this->m->table = 'Customers';
+    $this->m->key = 'Cid';
+    $this->m->fields = array('Cname','Ccontact','Caddress','Cpostcode','Cphone','Cbank','Caccount');
+    if(isset($_POST['customer_edit'])){
+      $conf = array('Cname'=>'required','Ccontact'=>'required','Caddress'=>'required','Cpostcode'=>'required','Cphone'=>'required','Cbank'=>'required','Caccount'=>'required');
+      $err = validate($conf);
+      if ( $err !== TRUE ) {
+        $this->err = $err;
+      }
+      $up = $this->m->update(seg(4));
+      $this->msg = $up?'修改成功':'修改失败';
+    }
+
+    $res = $this->m->get_one(seg(4));
+    $this->display('v/customer/customer_edit',array('res'=>$res));
   }
 
 }

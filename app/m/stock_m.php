@@ -5,7 +5,7 @@ class stock_m extends m {
   {
     global $app_id;
     parent::__construct();
-
+    
     $this->table_Stocks = array('Stocks_Wid','Stocks_Iname','Stockamount','Stockarea','Instocktime');
   }
 

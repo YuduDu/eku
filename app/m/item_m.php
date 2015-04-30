@@ -30,7 +30,7 @@ class item_m extends m {
   }
 
   function item_getByICname($ICname){
-  	$res = $this->db->query("select * from Items where ICname = $ICname");
+  	$res = $this->db->query("select * from Items where ICname = '".$ICname."'");
   	return $res;
   }
 
