@@ -4,11 +4,12 @@ class dashboard extends base{
   {
   		parent::__construct();
       $this->m = load('m/dashboard_m');
+
   }
   
   function index()
   {
-  	redirect(BASE.'dashboard/add','','',0);    
+  	redirect(BASE.'dashboard/add','','',0);   
   }
 
   function notice(){

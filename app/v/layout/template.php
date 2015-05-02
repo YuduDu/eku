@@ -41,6 +41,18 @@
         <?php }?>
       </ul>
       <div class="viewDetail">
+          
+        <form class="form-inline" action="?/search/key" method="post" style="margin-bottom: 10px; <?php if(!$needSearch){echo 'display:none;';}?>">
+          <div class="form-group">
+            <label>搜索</label>
+            <input type="text" name="key" value="<?php if($needSearch && seg(3) == 's'){echo urldecode(seg(4));} ?>" class="form-control">
+            <input type="hidden" name="uri" value="<?php echo seg(1).'/'.seg(2);?>">
+          </div>
+          <div class="form-group">
+            <input class="btn btn-default" type="submit" value="搜索" name="search">
+          </div>
+        </form>
+
         <?php echo $al_content;?>
         <p style="color:red;margin-top:10px;">
           <?php foreach($err as $e=>$r) {

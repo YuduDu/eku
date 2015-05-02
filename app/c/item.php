@@ -13,8 +13,24 @@ class item extends base{
 
   //物品大类列表
   function item_category_list(){
-    $res = $this->m->item_Category_getAll();
-    $this->display('v/item/item_category_list',array('res'=>$res));
+    $this->m->table = 'Item_Category';
+    $this->fields = array('ICname','Spec');
+    
+    if(seg(3) != 's'){
+      $page_cur = seg(4)?seg(4):1;
+      $res = $this->m->get_many('',$page_cur,10);
+      $tot = $this->m->count();
+      $pagination = pagination($tot ,  $page_cur, 10 ,BASE.'item/item_category_list/p/');
+    }else{
+      $page_cur = seg(6)?seg(6):1;
+      $where = 'AND ICname like "%'.urldecode(strip_tags(trim(seg(4)))).'%" OR Spec like "%'.urldecode(strip_tags(trim(seg(4)))).'%"';
+      $res = $this->m->get_many($where,$page_cur,10);
+      $tot = $this->m->count($where);
+      $pagination = pagination($tot ,  $page_cur, 10 ,BASE.'item/item_category_list/s/'.urlencode(strip_tags(trim(seg(4)))).'/p/');
+    }
+
+    //$res = $this->m->item_Category_getAll();
+    $this->display('v/item/item_category_list',array('res'=>$res,'pagination'=>$pagination,'m'=>$this->m),true);
   }
 
   function item_category_add(){
@@ -58,7 +74,13 @@ class item extends base{
 
   function item_see(){
     $items = $this->m->item_getByICname(urldecode(seg(4)));
-    $this->display('v/item/item_list',array('items'=>$items));
+    
+
+    $this->display('v/item/item_list',array('items'=>$items),true);
+  }
+
+  function item_see_search(){
+
   }
   
   function item_add(){

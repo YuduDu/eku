@@ -6,6 +6,7 @@ class base extends c{
   public $msg;
   public $addParams;
   public $upParams;
+  public $searchParams;
   function __construct($needCheck=true)
   {
     session_start();
@@ -109,7 +110,7 @@ class base extends c{
     return 1;
   }
   
-  function display($view,$param = array())
+  function display($view,$param = array(),$needSearch=false)
   {
     $param['al_content'] = view($view,$param,TRUE);
     $param['u'] = $this->u;
@@ -117,6 +118,7 @@ class base extends c{
     $param['tabCell'] = $this->tabCell;
     $param['err'] = $this->err;
     $param['msg'] = $this->msg;
+    $param['needSearch'] = $needSearch;
     header("Content-type: text/html; charset=utf-8");
     view('v/layout/template',$param);
   }

@@ -12,8 +12,23 @@ class customer extends base{
   }
 
   function customer_list(){
-    $res = $this->m->customer_getAll();
-  	$this->display('v/customer/list',array('res'=>$res));
+    $this->m->table = 'Customers';
+    $this->fields = array('Cid','Cname','Ccontact','Caddress','Cpostcode','Cphone','Cbank','Caccount');
+    
+    if(seg(3) != 's'){
+      $page_cur = seg(4)?seg(4):1;
+      $res = $this->m->get_many('',$page_cur,10);
+      $tot = $this->m->count();
+      $pagination = pagination($tot ,  $page_cur, 10 ,BASE.'customer/customer_list/p/');
+    }else{
+      $page_cur = seg(6)?seg(6):1;
+      $where = 'AND Cname like "%'.urldecode(strip_tags(trim(seg(4)))).'%"';
+      $res = $this->m->get_many($where,$page_cur,10);
+      $tot = $this->m->count($where);
+      $pagination = pagination($tot ,  $page_cur, 10 ,BASE.'customer/customer_list/s/'.urlencode(strip_tags(trim(seg(4)))).'/p/');
+    }
+
+    $this->display('v/customer/list',array('res'=>$res,'pagination'=>$pagination,'m'=>$this->m),true);
   }
 
   function add(){

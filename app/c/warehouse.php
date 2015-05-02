@@ -12,12 +12,20 @@ class warehouse extends base{
   }
 
   function warehouse_list(){
-    $page_cur = seg(4)?seg(4):1;
-
-    $res = $this->m->get_many('',$page_cur,10);
-    $tot = $this->m->count();
-    $pagination = pagination($tot ,  $page_cur, 10 ,BASE.'warehouse/warehouse_list/p/');
-  	$this->display('v/warehouse/warehouse_list',array('res'=>$res,'pagination'=>$pagination));
+    if(seg(3) != 's'){
+        $page_cur = seg(4)?seg(4):1;
+        $res = $this->m->get_many('',$page_cur,10);
+        $tot = $this->m->count();
+        $pagination = pagination($tot ,  $page_cur, 10 ,BASE.'warehouse/warehouse_list/p/');
+    }else{
+        $page_cur = seg(6)?seg(6):1;
+        $where = 'AND Admin_id like"%'.urldecode(strip_tags(trim(seg(4)))).'%"';
+        $res = $this->m->get_many($where,$page_cur,10);
+        $tot = $this->m->count($where);
+        $pagination = pagination($tot ,  $page_cur, 10 ,BASE.'warehouse/warehouse_list/'.urlencode(strip_tags(trim(seg(4)))).'/p/');
+    }
+    
+    $this->display('v/warehouse/warehouse_list',array('res'=>$res,'pagination'=>$pagination,'m'=>$this->m),true);
   }
 
   function warehouse_add(){
