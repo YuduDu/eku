@@ -41,8 +41,21 @@ class warehouse extends base{
   }
 
   function edit(){
+    $this->m->table = 'Warehouses';
+    $this->m->key = 'Wid';
+    $this->m->fields = array('Wid','Admin_id');
+    if(isset($_POST['warehouses_edit'])){
+      $conf = array('Admin_id'=>'required');
+      $err = validate($conf);
+      if ( $err !== TRUE ) {
+        $this->err = $err;
+      }
+      $up = $this->m->update(seg(4));
+      $this->msg = $up?'修改成功':'修改失败';
+    }
 
-    $this->display('v/warehouse/edit');
+    $res = $this->m->get_one(seg(4));
+    $this->display('v/warehouse/edit',array('res'=>$res));
   }
 
 

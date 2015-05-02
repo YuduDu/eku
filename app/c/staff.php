@@ -79,11 +79,21 @@ class staff extends base{
   }
 
   function staff_edit(){
+    $this->m->table = 'Staffs';
+    $this->m->key = 'Sid';
+    $this->m->fields = array('Sid','Sname','SCid','Sphone');
     if(isset($_POST['staff_edit'])){
-
+      $conf = array('Sname'=>'required','SCid'=>'required','Sphone'=>'required');
+      $err = validate($conf);
+      if ( $err !== TRUE ) {
+        $this->err = $err;
+      }
+      $up = $this->m->update(seg(4));
+      $this->msg = $up?'修改成功':'修改失败';
     }
 
-    $this->display('v/staff/staff_edit');
+    $res = $this->m->get_one(seg(4));
+    $this->display('v/staff/staff_edit',array('res'=>$res));
   }
 
 

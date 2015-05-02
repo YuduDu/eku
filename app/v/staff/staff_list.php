@@ -16,7 +16,7 @@
         <td><?php echo $v['Sname']?></td>
   			<td><?php echo $v['SCid']?></td>
   			<td><?php echo $v['Sphone']?></td>
-  			<td><a href="">编辑</a></td>
+  			<td><a href="?/staff/staff_edit/Sid/<?php echo $v['Sid'];?>">编辑</a></td>
   		</tr>
   		<?php }?>
     	</tbody>
